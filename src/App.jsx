@@ -70,17 +70,25 @@ const Navbar = ({ onOpenBooking }) => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 py-4 px-4 flex flex-col space-y-4">
+        <div className="md:hidden absolute top-full left-0 w-full mt-2 bg-white shadow-2xl rounded-2xl border border-gray-100 py-4 px-4 flex flex-col space-y-2 origin-top animate-fade-in-down">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="text-gray-800 font-medium py-2 px-4 hover:bg-blue-50 hover:text-primary rounded-lg transition-colors"
+              className="text-gray-800 font-medium py-3 px-4 hover:bg-blue-50 active:bg-blue-100 hover:text-primary rounded-xl transition-colors text-center"
             >
               {link.name}
             </a>
           ))}
+          <div className="pt-2">
+            <button 
+              onClick={() => { onOpenBooking(); setIsOpen(false); }}
+              className="bg-primary hover:bg-blue-700 text-white w-full py-3 rounded-xl font-bold transition-all shadow-md active:scale-95"
+            >
+              Book Now
+            </button>
+          </div>
         </div>
       )}
       </nav>
@@ -97,49 +105,49 @@ const Hero = ({ onOpenBooking }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-primary font-medium text-sm mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100 text-primary font-medium text-xs sm:text-sm mb-6">
               <Star size={16} className="fill-primary text-primary" /> Top Rated Clinic in Madhapur
             </div>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
-              Expert Dental Care <br /> You Can <span className="text-primary relative inline-block">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+              Expert Dental Care <br className="hidden sm:block" /> You Can <span className="text-primary relative inline-block">
                 Lean On
-                <svg className="absolute w-full h-3 -bottom-1 left-0 text-secondary/30" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="transparent" /></svg>
+                <svg className="absolute w-full h-2 sm:h-3 -bottom-1 left-0 text-secondary/30" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="transparent" /></svg>
               </span>
             </h1>
-            <p className="text-lg text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
+            <p className="text-base sm:text-lg text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
               Transforming smiles with world-class technology and compassionate care. Experience the perfect blend of clinical excellence and patient comfort at Lokael Dental.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
               <button 
                 onClick={() => onOpenBooking()}
-                className="bg-primary hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center justify-center gap-2 transition-all shadow-xl shadow-blue-600/20 hover:-translate-y-1"
+                className="bg-primary hover:bg-blue-700 text-white px-6 py-3.5 sm:px-8 sm:py-4 rounded-full font-semibold text-base flex items-center justify-center gap-2 transition-all shadow-xl shadow-blue-600/20 active:scale-95"
               >
                 Book Appointment <ArrowRight size={20} />
               </button>
               <a 
                 href="tel:9441234083" 
-                className="bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 px-8 py-4 rounded-full font-semibold text-lg flex items-center justify-center gap-2 transition-all hover:shadow-md"
+                className="bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 px-6 py-3.5 sm:px-8 sm:py-4 rounded-full font-semibold text-base flex items-center justify-center gap-2 transition-all hover:shadow-md active:scale-95"
               >
                 <Phone size={20} className="text-primary" /> Call 9441234083
               </a>
             </div>
           </div>
-          <div className="relative mt-10 lg:mt-0 xl:scale-110 xl:origin-left">
+          <div className="relative mt-8 sm:mt-10 lg:mt-0 xl:scale-110 xl:origin-left">
             <div className="absolute inset-0 bg-gradient-to-tr from-primary to-blue-300 rounded-[2rem] transform rotate-3 opacity-20 blur-lg"></div>
             <img 
               src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
               alt="Modern Dental Clinic" 
-              className="relative z-10 w-full h-auto min-h-[400px] rounded-[2rem] shadow-2xl object-cover object-center aspect-[4/3] border-8 border-white bg-gray-100"
+              className="relative z-10 w-full h-auto min-h-[300px] sm:min-h-[400px] rounded-[2rem] shadow-2xl object-cover object-center aspect-[4/3] border-4 sm:border-8 border-white bg-gray-100"
               onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/800x600/e2e8f0/64748b?text=Clinic" }}
             />
             {/* Floating badge */}
-            <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-4 animate-bounce" style={{animationDuration: '3s'}}>
-              <div className="bg-green-100 p-3 rounded-full text-green-600">
-                <Smile size={24} />
+            <div className="absolute -bottom-4 lg:-bottom-6 right-4 sm:-left-6 sm:right-auto bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl z-20 flex items-center gap-3 sm:gap-4 animate-bounce" style={{animationDuration: '3s'}}>
+              <div className="bg-green-100 p-2 sm:p-3 rounded-full text-green-600">
+                <Smile size={20} className="sm:w-6 sm:h-6" />
               </div>
               <div>
-                <p className="font-bold text-gray-900 text-xl">1000+</p>
-                <p className="text-sm text-gray-500 font-medium">Happy Patients</p>
+                <p className="font-bold text-gray-900 text-lg sm:text-xl">1000+</p>
+                <p className="text-xs sm:text-sm text-gray-500 font-medium">Happy Patients</p>
               </div>
             </div>
           </div>
@@ -158,12 +166,12 @@ const About = () => {
              <img 
               src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
               alt="Dental Professional" 
-              className="rounded-3xl shadow-xl w-full h-auto min-h-[400px] object-cover bg-gray-100 border-8 border-white"
+              className="rounded-3xl shadow-xl w-full h-auto min-h-[300px] sm:min-h-[400px] object-cover bg-gray-100 border-4 sm:border-8 border-white"
               onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/800x600/e2e8f0/64748b?text=Professional" }}
             />
-            <div className="absolute -right-8 top-1/4 bg-primary text-white p-6 rounded-2xl shadow-xl transform rotate-6">
-               <ShieldCheck size={40} className="mb-2" />
-               <p className="font-bold text-lg leading-tight">Advanced<br/>Technology</p>
+            <div className="absolute -right-2 lg:-right-8 top-1/4 bg-primary text-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-xl transform rotate-3 sm:rotate-6 max-w-[140px] sm:max-w-none">
+               <ShieldCheck size={32} className="mb-2 sm:w-10 sm:h-10" />
+               <p className="font-bold text-sm sm:text-lg leading-tight">Advanced<br/>Technology</p>
             </div>
           </div>
           <div className="order-1 md:order-2">
@@ -458,15 +466,15 @@ const BookingModal = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose}></div>
       <div className="bg-white rounded-3xl shadow-2xl w-full max-w-xl relative z-10 overflow-hidden flex flex-col max-h-[90vh]">
-        <div className="bg-primary p-6 text-white text-center relative shrink-0">
-          <button onClick={onClose} className="absolute right-4 top-4 hover:bg-white/20 p-2 rounded-full transition-colors">
-            <X size={24} />
+        <div className="bg-primary p-5 sm:p-6 text-white text-center relative shrink-0">
+          <button onClick={onClose} className="absolute right-3 top-3 hover:bg-white/20 p-2 rounded-full transition-colors">
+            <X size={20} className="sm:w-6 sm:h-6" />
           </button>
-          <h3 className="text-3xl font-bold mb-2">Book Appointment</h3>
-          <p className="text-blue-100">Schedule your visit with Lokael Dental</p>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">Book Appointment</h3>
+          <p className="text-blue-100 text-sm sm:text-base">Schedule your visit with Lokael Dental</p>
         </div>
         
-        <div className="p-8 overflow-y-auto w-full style-scroll">
+        <div className="p-6 sm:p-8 overflow-y-auto w-full style-scroll">
           <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert("Appointment Requested!"); onClose(); }}>
             <div className="space-y-4">
               <div>
@@ -477,7 +485,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1">Mobile Number</label>
                   <div className="relative">
@@ -491,7 +499,7 @@ const BookingModal = ({ isOpen, onClose }) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-1">Select Date</label>
                   <div className="relative">
